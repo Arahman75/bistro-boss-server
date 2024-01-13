@@ -34,24 +34,17 @@ async function run() {
         const cartCollection = client.db("bistroDb").collection('carts');
 
         // User related api
+        app.get('/users', async (req, res) => {
+            const result = await userCollection.find().toArray();
+            res.send(result)
+        })
+
         // app.post('/users', async (req, res) => {
         //     const user = req.body;
         //     const result = await userCollection.insertOne(user);
         //     res.send(result);
         // })
-        // social email id soho client teke database a add kora
-        // app.post('/users', async (req, res) => {
-        //     const user = req.body;
-        //     // insert email if does not exists
-        //     // you can do this many ways(1. email unique 2. upsert 3. simple checking)
-        //     const query = { email: user.email };
-        //     const existingUser = await userCollection.findOne(query);
-        //     if (existingUser) {
-        //         return res.send({ message: 'user already exists', insertedId: null })
-        //     }
-        //     const result = await userCollection.insertOne(user);
-        //     res.send(result);
-        // })
+
 
         app.post('/users', async (req, res) => {
             const user = req.body;
